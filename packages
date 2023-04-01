@@ -1,0 +1,16 @@
+texlive
+biber
+texlive-luatex
+texlive-latex-extra
+texlive-lang-spanish
+texlive-fonts-extra
+taskwarrior
+tmux
+fzf
+bat
+zoxide
+exa
+neovim
+i3
+nitrogen
+zathura
