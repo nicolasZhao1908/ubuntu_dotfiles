@@ -1,0 +1,20 @@
+[init]
+	defaultBranch = main
+[user]
+	name = nicolasZhao1908
+    email = 0619971117@uma.es
+[diff]
+	colorMoved = zebra
+[pull]
+	ff = true
+[core]
+	editor = vim
+[alias]
+    change = "commit --amend"
+    noname = "commit --amend --no-edit"
+    nohook = "commit --no-verify"
+    ss = "status --short"
+    lc = "config --list --show-origin"
+    mc = "diff --check"
+[credential]
+	provider = generic

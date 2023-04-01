@@ -56,7 +56,7 @@ eval "$(pyenv virtualenv-init -)"
 . $HOME/.zsh_alias
 
 eval "$(zoxide init zsh)"
-task next
+task list
 
 
 # pnpm
@@ -66,5 +66,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
