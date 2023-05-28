@@ -54,6 +54,7 @@ local plugins = {
         },
     },
 
+
     -- Fuzzy finder
     {
         "nvim-telescope/telescope.nvim",
@@ -101,6 +102,17 @@ local plugins = {
         end,
     },
     {
+        "iamcco/markdown-preview.nvim",
+        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+        build = "cd app && npm install",
+        ft = { "markdown" },
+        config = function()
+            vim.keymap.set("n", "<Leader>m", "<Plug>MarkdownPreview", { desc = "Markdown Preview" })
+            vim.keymap.set("n", "<Leader>M", "<Plug>MarkdownPreviewStop", { desc = "Markdown Preview" })
+        end,
+
+    },
+    {
         "antosha417/nvim-lsp-file-operations",
         dependencies = { "nvim-tree/nvim-tree.lua" },
         config = function()
@@ -114,7 +126,7 @@ local plugins = {
         end,
     },
     {
-        "NvChad/nvim-colorizer.lua",
+        "norcalli/nvim-colorizer.lua",
         config = function()
             require("colorizer").setup()
         end,

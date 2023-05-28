@@ -56,7 +56,6 @@ eval "$(pyenv virtualenv-init -)"
 . $HOME/.zsh_alias
 
 eval "$(zoxide init zsh)"
-task list
 
 
 # pnpm

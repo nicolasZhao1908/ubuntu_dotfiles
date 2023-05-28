@@ -32,15 +32,22 @@ lsp.on_attach(function(client, bufnr)
     bind("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
     bind("", "<C-Space>", vim.lsp.buf.completion, { desc = "Toggle completion" })
 end)
-lsp.configure("rust_analyzer", {
-    force_setup = true,
+
+require('lspconfig').rust_analyzer.setup({
     cmd = { "rustup", "run", "stable", "rust-analyzer" },
-    checkOnSave = {
-        command = "clippy",
-    },
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = true,
+            check = {
+                command = "clippy",
+                extraArgs = { "--", "-Wclippy::pedantic", "-Wclippy::perf" }
+            },
+        }
+    }
 })
 
 local cmp = require("cmp")
+
 
 lsp.setup_nvim_cmp({
     mapping = lsp.defaults.cmp_mappings({

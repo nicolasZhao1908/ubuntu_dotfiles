@@ -147,7 +147,6 @@ bindsym $mod+Shift+6 move container to workspace  $ws6
 # floating window apps
 for_window [class="Lutris"] floating enable
 for_window [class="Wine"] floating enable
-for_window [class="discord"] floating enable
 for_window [class="flameshot"] floating enable
 for_window [class="firefox-aurora" instance="Places"] floating enable
 for_window [class="Dunst"] floating enable

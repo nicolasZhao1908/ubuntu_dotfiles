@@ -919,7 +919,7 @@ font:
 #print_events: false
 
 # Highlight window damage information.
-  #
+
 ## Colors (Gruvbox dark)
 colors:
   # Default colors
