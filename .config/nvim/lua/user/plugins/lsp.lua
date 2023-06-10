@@ -1,10 +1,3 @@
-local lsp = require("lsp-zero").preset({
-    name = "recommended",
-    set_lsp_keymaps = { omit = { "<C-k>" } },
-    manage_nvim_cmp = true,
-    suggest_lsp_servers = true,
-})
-
 require("mason").setup({
     ui = {
         icons = {
@@ -15,48 +8,137 @@ require("mason").setup({
     },
 })
 
--- (Optional) Configure lua language server for neovim
-lsp.nvim_workspace()
-lsp.on_attach(function(client, bufnr)
-    -- local opts = { buffer = bufnr }
-    local bind = vim.keymap.set
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<Leader>dp', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<Leader>dn', vim.diagnostic.goto_next)
 
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    if client.name == "tsserver" then
-        client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+
+local servers = {
+    rust_analyzer = {
+        checkOnSave = true,
+        check = {
+            command = "clippy",
+            extraArgs = { "--", "-Wclippy::perf" }
+        },
+    },
+    lua_ls = {
+        Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+        },
+    },
+    svelte = {},
+    tsserver = {},
+}
+-- [[ Configure LSP ]]
+--  This function gets run when an LSP connects to a particular buffer.
+local on_attach = function(_, bufnr)
+    -- NOTE: Remember that lua is a real programming language, and as such it is possible
+    -- to define small helper and utility functions so you don't have to repeat yourself
+    -- many times.
+    --
+    -- In this case, we create a function that lets us more easily define mappings specific
+    -- for LSP related items. It sets the mode, buffer and description for us each time.
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = 'LSP: ' .. desc
+        end
+
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
 
-    -- Format on save
-    -- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
-    bind("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
-    bind("", "<C-Space>", vim.lsp.buf.completion, { desc = "Toggle completion" })
-end)
+    nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-require('lspconfig').rust_analyzer.setup({
-    cmd = { "rustup", "run", "stable", "rust-analyzer" },
-    settings = {
-        ["rust-analyzer"] = {
-            checkOnSave = true,
-            check = {
-                command = "clippy",
-                extraArgs = { "--", "-Wclippy::pedantic", "-Wclippy::perf" }
-            },
+    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+    nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+    nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+
+    -- See `:help K` for why this keymap
+    nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+    -- Lesser used LSP functionality
+    nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+    nmap('<Leader>F', function()
+        vim.lsp.buf.format { async = true }
+    end, '[F]ormat current buffer')
+end
+
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+local mason_lspconfig = require("mason-lspconfig")
+
+mason_lspconfig.setup {
+    ensure_installed = vim.tbl_keys(servers),
+}
+
+mason_lspconfig.setup_handlers {
+    function(server_name)
+        require('lspconfig')[server_name].setup {
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers[server_name],
         }
-    }
-})
+    end,
+}
+-- [[ Configure nvim-cmp ]]
+-- See `:help cmp`
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+require('luasnip.loaders.from_vscode').lazy_load()
+luasnip.config.setup {}
 
-local cmp = require("cmp")
+cmp.setup {
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    window = {
+        documentation = {
+            max_height = 15,
+            max_width = 60,
+        }
+    },
+    formatting = {
+        fields = { 'abbr', 'menu', 'kind' },
+        format = function(entry, item)
+            local short_name = {
+                nvim_lsp = 'LSP',
+                nvim_lua = 'NVIM',
+                buffer = "BUF",
+                path = "PATH",
+                luasnip = "SNIP"
+            }
 
+            local menu_name = short_name[entry.source.name] or entry.source.name
 
-lsp.setup_nvim_cmp({
-    mapping = lsp.defaults.cmp_mappings({
-        ["<C-e>"] = vim.NIL,
-        ["<C-Space>"] = cmp.mapping.complete(),
-    }),
-})
-
-lsp.setup()
+            item.menu = string.format('[%s]', menu_name)
+            return item
+        end,
+    },
+    mapping = cmp.mapping.preset.insert {
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete {},
+        ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+        },
+    },
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    },
+}
 
 vim.diagnostic.config({
     virtual_text = true,
@@ -66,27 +148,3 @@ vim.diagnostic.config({
     severity_sort = false,
     float = true,
 })
-
-local null_ls = require("null-ls")
-local null_opts = lsp.build_options("null-ls", {})
-
-null_ls.setup({
-    on_attach = function(client, bufnr)
-        null_opts.on_attach(client, bufnr)
-    end,
-    sources = { null_ls.builtins.formatting.prettierd },
-})
-
--- See mason-null-ls.nvim's documentation for more details:
--- https://github.com/jay-babu/mason-null-ls.nvim#setup
-require("mason-null-ls").setup({
-    ensure_installed = nil,
-    automatic_installation = false, -- You can still set this to `true`
-    automatic_setup = true,
-})
-
--- Required when `automatic_setup` is true
-require("mason-null-ls").setup {
-    handlers = { function()
-    end }
-}

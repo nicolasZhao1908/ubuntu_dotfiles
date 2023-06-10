@@ -30,10 +30,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected line to upward." })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line to downward." })
 
--- Format
-vim.keymap.set("n", "<Leader>F", function()
-    vim.lsp.buf.format({ async = true })
-end, { desc = "[F]ormat current buffer" })
 
 local function open_file()
     local current_file = vim.fn.expand("<cfile>")

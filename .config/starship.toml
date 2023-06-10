@@ -32,4 +32,4 @@ symbol = "[⬢](bold green) "
 symbol = "🧊 "
 
 [git_branch]
-symbol = '📦️ '
+symbol = ''
