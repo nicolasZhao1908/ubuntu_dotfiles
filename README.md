@@ -70,6 +70,9 @@ stow .
 - [fd](https://github.com/sharkdp/fd), `find` replacement.
 - [zoxide](https://github.com/ajeetdsouza/zoxide), smart `cd`.
 - [ripgrep](https://github.com/BurntSushi/ripgrep), `grep` replacement.
+- [sccache](https://github.com/mozilla/sccache), cache for faster build time.
+- [hyperfine](https://github.com/sharkdp/hyperfine), benchmarking tool.
+- [macchina](https://github.com/Macchina-CLI/macchina), better `uname -a`.
 
 ## Web browsers
 
@@ -149,9 +152,11 @@ fc-list | grep "DejaVuSansM Nerd Font Mono"
 
 [`rust`](https://www.rust-lang.org/learn/get-started)
 
+- `rustlings`, exercises.
 - `cargo-watch`, tests/runs/builds/lints code on change.
 - `cargo-expand`, expands Rust macros.
-- `sccache`, cache for faster build time.
+- `cargo-update`, update crates.
+- `cargo-generate`, project template generator.
 
 ### Python
 
@@ -170,7 +175,7 @@ fc-list | grep "DejaVuSansM Nerd Font Mono"
 
 ### Latex packages
 
-> Consider adding the [vimtex](https://github.com/lervag/vimtex) plugin for latex local development.
+>Consider adding the [vimtex](https://github.com/lervag/vimtex) plugin for latex local development.
 
 - `texlive`, Latex's distro.
 - `biber`
