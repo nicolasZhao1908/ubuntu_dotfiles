@@ -22,3 +22,5 @@ path=(
 . "$HOME/.ghcup/env"
 
 export PATH
+export FPATH=$FPATH:$HOME/.zsh/completions
+export EDITOR=nvim

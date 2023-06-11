@@ -53,10 +53,16 @@ autoload -Uz compinit && compinit
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-. $HOME/.zsh_alias
+
+if [ -f $HOME/.zsh_alias ]; then
+  source $HOME/.zsh_alias
+fi
 
 eval "$(zoxide init zsh)"
 
+if [ -f $HOME/.config/nnn/config.sh ]; then
+  source $HOME/.config/nnn/config.sh
+fi
 
 # pnpm
 export PNPM_HOME="/home/nicozhao1908/.local/share/pnpm"

@@ -83,7 +83,6 @@ return {
             end, '[F]ormat current buffer')
         end
         require('neodev').setup()
-
         -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -151,6 +150,9 @@ return {
                 },
             },
             sources = {
+                {
+                    name = 'path',
+                },
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
             },
