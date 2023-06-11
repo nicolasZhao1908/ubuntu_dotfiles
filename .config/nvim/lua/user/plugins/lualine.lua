@@ -4,7 +4,7 @@ return {
     opts = {
         options = {
             icons_enabled = false,
-            theme = "gruvbox-material",
+            theme = "dayfox",
             component_separators = "|",
             section_separators = "",
         }

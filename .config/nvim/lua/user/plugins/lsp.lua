@@ -150,9 +150,7 @@ return {
                 },
             },
             sources = {
-                {
-                    name = 'path',
-                },
+                { name = 'path' },
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
             },
