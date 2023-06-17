@@ -27,6 +27,8 @@ format = '\[[$symbol($version)]($style)\]'
 
 [c]
 format = '\[[$symbol($version(-$name))]($style)\]'
+style = 'bold gray'
+symbol = ' '
 
 [cmake]
 format = '\[[$symbol($version)]($style)\]'
@@ -76,6 +78,7 @@ format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
 [git_branch]
 format = '\[[$symbol$branch]($style)\]'
 symbol = ''
+style= 'bold purple'
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
@@ -160,6 +163,8 @@ format = '\[[$symbol($version)]($style)\]'
 
 [python]
 format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+symbol = ' '
+style = 'yellow'
 
 [raku]
 format = '\[[$symbol($version-$vm_version)]($style)\]'

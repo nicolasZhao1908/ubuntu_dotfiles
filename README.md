@@ -20,8 +20,8 @@ how `stow` works:
 ```
 
 > Note that many packages from APT are really outdated, so apps like
-> Neovim and Firefox is not included in `Packages` and should be manually
-> compiled in order to get the most recent versions.
+> Neovim and Firefox is not included in the `Packages` file and should be 
+> manually compiled in order to get the most recent versions.
 
 > [Optionally, remove Snap and replace it with Flatpak](https://github.com/popey/unsnap)
 
@@ -55,24 +55,24 @@ stow .
 
 ## Shell
 
-- [Zsh](https://www.zsh.org/)
-  - [Zsh-autosuggestion](https://github.com/zsh-users/zsh-syntax-highlighting)
-  - [Zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-  - [Starship prompt](https://starship.rs)
-- [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md), terminal emulator.
-- [Tmux](https://github.com/tmux/tmux/wiki/Installing), terminal multiplexor.
+-   [Zsh](https://www.zsh.org/)
+    -   [Zsh-autosuggestion](https://github.com/zsh-users/zsh-syntax-highlighting)
+    -   [Zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+    -   [Starship prompt](https://starship.rs)
+-   [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md), terminal emulator.
+-   [Tmux](https://github.com/tmux/tmux/wiki/Installing), terminal multiplexor.
 
 ### CLI Utilities
 
-- [fzf](https://github.com/junegunn/fzf), Fuzzy finder.
-- [exa](https://github.com/ogham/exa), `ls` replacement.
-- [bat](https://github.com/sharkdp/bat), `cat` replacement. 
-- [fd](https://github.com/sharkdp/fd), `find` replacement.
-- [zoxide](https://github.com/ajeetdsouza/zoxide), smart `cd`.
-- [ripgrep](https://github.com/BurntSushi/ripgrep), `grep` replacement.
-- [sccache](https://github.com/mozilla/sccache), cache for faster build time.
-- [hyperfine](https://github.com/sharkdp/hyperfine), benchmarking tool.
-- [macchina](https://github.com/Macchina-CLI/macchina), better `uname -a`.
+-   [fzf](https://github.com/junegunn/fzf), Fuzzy finder.
+-   [exa](https://github.com/ogham/exa), `ls` replacement.
+-   [bat](https://github.com/sharkdp/bat), `cat` replacement.
+-   [fd](https://github.com/sharkdp/fd), `find` replacement.
+-   [zoxide](https://github.com/ajeetdsouza/zoxide), smart `cd`.
+-   [ripgrep](https://github.com/BurntSushi/ripgrep), `grep` replacement.
+-   [sccache](https://github.com/mozilla/sccache), cache for faster build time.
+-   [hyperfine](https://github.com/sharkdp/hyperfine), benchmarking tool.
+-   [macchina](https://github.com/Macchina-CLI/macchina), better `uname -a`.
 
 ## Web browsers
 
@@ -82,7 +82,7 @@ stow .
 
 [Zathura]
 
-## Image Viewer and Wallpapers 
+## Image Viewer and Wallpapers
 
 [feh](https://github.com/derf/feh)
 
@@ -110,32 +110,32 @@ stow .
 
 [Neovim](https://neovim.io/)
 
-| Plugin name      | Description                               |
-| ---------------- | ----------------------------------------- |
-| Lazy             | Plugin manager                            |
-| gruvbox_material | Theme                                     |
-| LSP Config       | LSP configuration                         |
-| Mason            | Language/Linter/Formatter servers manager |
-| nvim-cmp         | Autcompletion                             |
-| Vim-fugitive     | Git integration                           |
-| Treesitter       | Syntax highlighting                       |
-| Telescope        | Fuzzy finder                              |
-| Tmux-Neovim      | Neovim like tmux navigation               |
-| Nvim-tree        | File tree                                 |
-| Harpoon          | Quick file switcher                       |
-| Lualine          | Status bar                                |
+| Plugin name  | Description                               |
+| ------------ | ----------------------------------------- |
+| Lazy         | Plugin manager                            |
+| Dayfox       | Theme                                     |
+| LSP Config   | LSP configuration                         |
+| Mason        | Language/Linter/Formatter servers manager |
+| nvim-cmp     | Autcompletion                             |
+| Vim-fugitive | Git integration                           |
+| Treesitter   | Syntax highlighting                       |
+| Telescope    | Fuzzy finder                              |
+| Tmux-Neovim  | Neovim like tmux navigation               |
+| Nvim-tree    | File tree                                 |
+| Harpoon      | Quick file switcher                       |
+| Lualine      | Status bar                                |
 
 ## Virtual machine
 
-- [KVM](https://ubuntu.com/blog/kvm-hyphervisor), Linux native hypervisor.
-- [Virt-Manager](https://virt-manager.org/), KVM-Qemu GUI.
+-   [KVM](https://ubuntu.com/blog/kvm-hyphervisor), Linux native hypervisor.
+-   [Virt-Manager](https://virt-manager.org/), KVM-Qemu GUI.
 
 ## Container
 
-- [docker](https://docs.docker.com/engine/install/)
-- [docker-compose](https://docs.docker.com/compose/install/)
+-   [docker](https://docs.docker.com/engine/install/)
+-   [docker-compose](https://docs.docker.com/compose/install/)
 
-## Font Familty
+## Font Family
 
 [DejaVuSansM Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/DejaVuSansMono.zip)
 
@@ -152,38 +152,38 @@ fc-list | grep "DejaVuSansM Nerd Font Mono"
 
 [`rust`](https://www.rust-lang.org/learn/get-started)
 
-- `rustlings`, exercises.
-- `cargo-watch`, tests/runs/builds/lints code on change.
-- `cargo-expand`, expands Rust macros.
-- `cargo-update`, update crates.
-- `cargo-generate`, project template generator.
+-   `rustlings`, exercises.
+-   `cargo-watch`, tests/runs/builds/lints code on change.
+-   `cargo-expand`, expands Rust macros.
+-   `cargo-update`, update crates.
+-   `cargo-generate`, project template generator.
 
 ### Python
 
-- [pyenv](https://github.com/pyenv/pyenv#automatic-installer)
+-   [pyenv](https://github.com/pyenv/pyenv#automatic-installer)
 
 ### Node js
 
-- [nvm](https://github.com/nvm-sh/nvm), node version manager.
-- [pnpm](https://pnpm.io/), `npm` alternative.
+-   [nvm](https://github.com/nvm-sh/nvm), node version manager.
+-   [pnpm](https://pnpm.io/), `npm` alternative.
 
 ## Research
 
-- [zotero](https://www.zotero.org/)
-- [zotero-storage-scanner](https://github.com/retorquere/zotero-storage-scanner)
-- [zotfile](https://github.com/jlegewie/zotfile)
+-   [zotero](https://www.zotero.org/)
+-   [zotero-storage-scanner](https://github.com/retorquere/zotero-storage-scanner)
+-   [zotfile](https://github.com/jlegewie/zotfile)
 
 ### Latex packages
 
->Consider adding the [vimtex](https://github.com/lervag/vimtex) plugin for latex local development.
+> Consider adding the [vimtex](https://github.com/lervag/vimtex) plugin for latex local development.
 
-- `texlive`, Latex's distro.
-- `biber`
-- `latexmk`, Latex's Make
-- `texlive-luatex`, Latex's compiler
-- `texlive-lang-spanish`
-- `texlive-latex-extra`
-- `texlive-fonts-extra`
+-   `texlive`, Latex's distro.
+-   `biber`
+-   `latexmk`, Latex's Make
+-   `texlive-luatex`, Latex's compiler
+-   `texlive-lang-spanish`
+-   `texlive-latex-extra`
+-   `texlive-fonts-extra`
 
 ## Chinese keyboard input
 
@@ -219,4 +219,3 @@ Theme=Nord-Light
 
 fcitx5 -r
 ```
-

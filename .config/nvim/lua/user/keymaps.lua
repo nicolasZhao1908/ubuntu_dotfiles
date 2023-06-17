@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 -- Go to the mark's column
 vim.keymap.set("n", "'", "`")
 
--- Currently using nvim-tree
+-- Currently using nvim-tree checkout lua/user/plugins/nvimtree
 -- vim.keymap.set('n', '<Leader>pv', vim.cmd.Ex)
 
 -- Paste and move the deleted content to the void register
@@ -37,4 +37,4 @@ local function open_file()
 end
 
 vim.keymap.set("", "gx", open_file,
-{ noremap = true, silent = true, desc = "[G]lobal [e]xecute hovered filename or URL." })
+{ noremap = true, silent = true, desc = "[G]lobal e[x]ecute hovered filename or URL." })

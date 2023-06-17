@@ -36,13 +36,6 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Window border
 new_window pixel 1
 
-## Screenshots (maim)
-# bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date +'%Y_%m_%H_%M').png"
-
-## Clipboard Screenshots
-# bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-# bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
-
 bindsym Print exec --no-startup-id flameshot gui
 
 # Use pactl to adjust volume in PulseAudio.
@@ -122,10 +115,6 @@ set $ws4 "4:󰙯"
 set $ws5 "5:"
 set $ws6 "6:"
 
-bindsym $mod+n exec --no-startup-id notify-send -u normal "🔷 Learn" && \
-                                    notify-send -u normal "🔷 Present" && \
-                                    notify-send -u normal "🔷 Correct"
-
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -148,6 +137,8 @@ for_window [class="Wine"] floating enable
 for_window [class="flameshot"] floating enable
 for_window [class="firefox-aurora" instance="Places"] floating enable
 for_window [class="Dunst"] floating enable
+for_window [class="latexocr"] floating enable
+for_window [class="latexocr"] resize set 400 400
 
 # assigning
 assign [class="Lutris"] $ws5
@@ -188,8 +179,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # Colors
-set $black 	#1b1e26
-set $yellow   #ffb52a	
+set $blue 	#1e88e5
+set $white   #FFFFFF	
 set $grey	#b0b287
 set $green	#789073
 
@@ -206,9 +197,12 @@ set $green	#789073
 #client.background       #2B2C2B
 
 # My colors
-client.focused $yellow $black $yellow $yellow $yellow
-client.focused_inactive $black $black $grey $green $green	
-client.unfocused $black $black $grey $yellow $black
-client.urgent $red $black $yellow $yellow $yellow
-client.placeholder $black $black $yellow $yellow $yellow
-client.background $black
+# https://i3wm.org/docs/userguide.html#client_colors
+
+# <class>  <border>  <backgr.>  <text>  <indicator>  <child_border>
+client.focused $blue $blue $white $blue $blue
+client.focused_inactive $blue $blue $white $white $white	
+client.unfocused $blue $blue $grey $white $white
+client.urgent $red $blue $white $white $white
+client.placeholder $blue $blue $white $white $white
+client.background $blue
