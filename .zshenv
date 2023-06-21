@@ -17,6 +17,8 @@ path=(
     $PYENV_ROOT/bin
     $path
     $HOME/scripts
+    /opt/Xilinx/Vitis_HLS/2023.1/bin
+    /opt/Xilinx/Vivado/2023.1/bin
 )
 . "$HOME/.cargo/env"
 . "$HOME/.ghcup/env"
@@ -24,3 +26,4 @@ path=(
 export PATH
 export FPATH=$FPATH:$HOME/.zsh/completions
 export EDITOR=nvim
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'

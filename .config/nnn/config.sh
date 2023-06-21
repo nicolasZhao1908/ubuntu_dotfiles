@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export NNN_BMS="d:$HOME/Documents;D:$HOME/Downloads/;.:$HOME/dotfiles/.config;n:$HOME/dotfiles/.config/nvim"
+export NNN_BMS="d:$HOME/Documents;D:$HOME/Downloads/;.:$HOME/dotfiles/.config;n:$HOME/dotfiles/.config/nvim;V:$HOME/Documents/DigitalTechnik"
 export NNN_TRASH=2 # gio trash --list
 BLK="0B" CHR="0B" DIR="04" EXE="06" REG="00" HARDLINK="06" SYMLINK="06" MISSING="00" ORPHAN="09" FIFO="06" SOCK="0B" OTHER="06"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"

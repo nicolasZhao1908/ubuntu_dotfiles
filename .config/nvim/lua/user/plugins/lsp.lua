@@ -25,9 +25,9 @@ return {
 		})
 
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
-		vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float)
-		vim.keymap.set("n", "<Leader>dp", vim.diagnostic.goto_prev)
-		vim.keymap.set("n", "<Leader>dn", vim.diagnostic.goto_next)
+		vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float,{desc ="Show [E]rror"})
+		vim.keymap.set("n", "<Leader>dp", vim.diagnostic.goto_prev,{desc ="[D]iagnostic [P]rev"})
+		vim.keymap.set("n", "<Leader>dn", vim.diagnostic.goto_next, {desc ="[D]iagnostic [N]ext"})
 
 		local servers = {
 			rust_analyzer = {
@@ -45,6 +45,7 @@ return {
 			},
 			svelte = {},
 			tsserver = {},
+			verible = {},
 		}
 		-- [[ Configure LSP ]]
 		--  This function gets run when an LSP connects to a particular buffer.
@@ -101,11 +102,17 @@ return {
 
 		mason_lspconfig.setup_handlers({
 			function(server_name)
-				require("lspconfig")[server_name].setup({
+				local setup_options = {
 					capabilities = capabilities,
 					on_attach = on_attach,
 					settings = servers[server_name],
-				})
+				}
+				if server_name == "verible" then
+					setup_options["root_dir"] = function()
+						return vim.loop.cwd()
+					end
+				end
+				require("lspconfig")[server_name].setup(setup_options)
 			end,
 		})
 		-- [[ Configure nvim-cmp ]]
@@ -181,6 +188,9 @@ return {
 			}),
 			null_ls.builtins.formatting.clang_format.with({
 				args = { "-style=file:" .. vim.fn.expand("$XDG_CONFIG_HOME/formatter_config/.clang-format") },
+			}),
+			null_ls.builtins.formatting.verible_verilog_format.with({
+				extra_args= {"--indentation_spaces", "4"}
 			}),
 			null_ls.builtins.formatting.prettierd.with({
 				filetypes = {
