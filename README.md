@@ -1,8 +1,8 @@
 # Dotfiles
 
-These are my dotfiles for an Ubuntu 22.04 OS machine. It uses `GNU Stow` for a
-dead easy dotfiles management. The following chunk of text shows an example of
-how `stow` works:
+Dotfiles for an Ubuntu 22.04 OS machine. It uses `GNU Stow` for a
+dead easy dotfiles management. The following code snippet shows an example of
+how `GNU Stow` works:
 
 ```txt
 ➜ tree -L 1 ~/dotfiles
@@ -19,8 +19,8 @@ how `stow` works:
 └─ dotfiles
 ```
 
-> Note that many packages from APT are really outdated, so apps like
-> Neovim and Firefox is not included in the `Packages` file and should be 
+> Many packages from APT are really outdated, so apps like
+> Neovim and Firefox are not included in the `Packages` file and should be 
 > manually compiled in order to get the most recent versions.
 
 > [Optionally, remove Snap and replace it with Flatpak](https://github.com/popey/unsnap)
@@ -52,6 +52,7 @@ stow .
 | dunst               | Notification Manager                  |
 | i3wm                | Tiling Window Manager                 |
 | Polybar             | Task bar                              |
+| auto-cpufreq        | Automatic power management            |
 
 ## Shell
 
@@ -72,7 +73,6 @@ stow .
 -   [ripgrep](https://github.com/BurntSushi/ripgrep), `grep` replacement.
 -   [sccache](https://github.com/mozilla/sccache), cache for faster build time.
 -   [hyperfine](https://github.com/sharkdp/hyperfine), benchmarking tool.
--   [macchina](https://github.com/Macchina-CLI/macchina), better `uname -a`.
 
 ## Web browsers
 
@@ -80,7 +80,7 @@ stow .
 
 ## PDF viewer
 
-[Zathura]
+[Zathura](https://pwmt.org/projects/zathura/)
 
 ## Image Viewer and Wallpapers
 
@@ -137,20 +137,20 @@ stow .
 
 ## Font Family
 
-[DejaVuSansM Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/DejaVuSansMono.zip)
+[Noto Sans Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Noto/Sans-Mono)
 
 ```bash
 unzip <filename>.zip
 mv <filename>/*.ttf  ~/.local/share/fonts
 fc-cache -vf
-fc-list | grep "DejaVuSansM Nerd Font Mono"
+fc-list | grep "NotoSansMNerdFont"
 ```
 
 ## Programming language tools
 
 ### Rust
 
-[`rust`](https://www.rust-lang.org/learn/get-started)
+[`Rust`](https://www.rust-lang.org/learn/get-started)
 
 -   `rustlings`, exercises.
 -   `cargo-watch`, tests/runs/builds/lints code on change.
@@ -171,6 +171,7 @@ fc-list | grep "DejaVuSansM Nerd Font Mono"
 
 -   [zotero](https://www.zotero.org/)
 -   [zotero-storage-scanner](https://github.com/retorquere/zotero-storage-scanner)
+-   [Better BibTeX]https://github.com/retorquere/zotero-better-bibtex()
 -   [zotfile](https://github.com/jlegewie/zotfile)
 
 ### Latex packages
@@ -184,6 +185,13 @@ fc-list | grep "DejaVuSansM Nerd Font Mono"
 -   `texlive-lang-spanish`
 -   `texlive-latex-extra`
 -   `texlive-fonts-extra`
+
+## Server settings
+
+```bash
+curl https://raw.githubusercontent.com/nicolasZhao1908/dotfiles/main/.vimrc > .vimrc
+curl https://raw.githubusercontent.com/nicolasZhao1908/dotfiles/main/.tmux.conf > .tmux.tmux.conf
+```
 
 ## Chinese keyboard input
 

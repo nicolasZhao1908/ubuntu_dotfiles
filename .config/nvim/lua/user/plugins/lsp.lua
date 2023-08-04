@@ -25,9 +25,9 @@ return {
 		})
 
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
-		vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float,{desc ="Show [E]rror"})
-		vim.keymap.set("n", "<Leader>dp", vim.diagnostic.goto_prev,{desc ="[D]iagnostic [P]rev"})
-		vim.keymap.set("n", "<Leader>dn", vim.diagnostic.goto_next, {desc ="[D]iagnostic [N]ext"})
+		vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float, { desc = "Show [E]rror" })
+		vim.keymap.set("n", "<Leader>dp", vim.diagnostic.goto_prev, { desc = "[D]iagnostic [P]rev" })
+		vim.keymap.set("n", "<Leader>dn", vim.diagnostic.goto_next, { desc = "[D]iagnostic [N]ext" })
 
 		local servers = {
 			rust_analyzer = {
@@ -43,8 +43,6 @@ return {
 					telemetry = { enable = false },
 				},
 			},
-			svelte = {},
-			tsserver = {},
 			verible = {},
 		}
 		-- [[ Configure LSP ]]
@@ -74,7 +72,7 @@ return {
 
 			-- See `:help K` for why this keymap
 			nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-			nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+			-- nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 			-- Lesser used LSP functionality
 			nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -180,41 +178,14 @@ return {
 		local null_ls = require("null-ls")
 		local sources = {
 			null_ls.builtins.formatting.stylua,
-			null_ls.builtins.diagnostics.eslint_d.with({
-				-- ignore prettier warnings from eslint-plugin-prettier
-				filter = function(diagnostic)
-					return diagnostic.code ~= "prettier/prettier"
-				end,
-			}),
 			null_ls.builtins.formatting.clang_format.with({
 				args = { "-style=file:" .. vim.fn.expand("$XDG_CONFIG_HOME/formatter_config/.clang-format") },
 			}),
 			null_ls.builtins.formatting.verible_verilog_format.with({
-				extra_args= {"--indentation_spaces", "4"}
+				extra_args = { "--indentation_spaces", "4" },
 			}),
-			null_ls.builtins.formatting.prettierd.with({
-				filetypes = {
-					"javascript",
-					"javascriptreact",
-					"typescript",
-					"typescriptreact",
-					"vue",
-					"css",
-					"scss",
-					"less",
-					"html",
-					"json",
-					"jsonc",
-					"yaml",
-					"markdown",
-					"markdown.mdx",
-					"graphql",
-					"handlebars",
-					"svelte",
-				},
-				env = {
-					PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("$XDG_CONFIG_HOME/formatter_config/.prettierrc"),
-				},
+			null_ls.builtins.formatting.prettier.with({
+				extra_args = {"--config", vim.fn.expand("$XDG_CONFIG_HOME/formatter_config/.prettierrc")}
 			}),
 		}
 		null_ls.setup({

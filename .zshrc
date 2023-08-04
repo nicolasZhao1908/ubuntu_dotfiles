@@ -31,8 +31,9 @@ HISTFILE=~/.zsh_history
 ZSH_AUTOSUGGEST_MANUAL_REBIND=""
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Prompt
+# starship prompt
 eval "$(starship init zsh)"
+# starship prompt end
 
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin \
                                            /usr/local/bin  \
@@ -50,19 +51,28 @@ zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# nvm end
+
+# pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+# pyenv end
 
 if [ -f $HOME/.zsh_alias ]; then
   source $HOME/.zsh_alias
 fi
 
+# zoxide
 eval "$(zoxide init zsh)"
+# zoxide end
 
+# nnn
 if [ -f $HOME/.config/nnn/config.sh ]; then
   source $HOME/.config/nnn/config.sh
 fi
+# nnn end
 
 # pnpm
 export PNPM_HOME="/home/nicozhao1908/.local/share/pnpm"
@@ -71,4 +81,15 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
+# ssh agent
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l > /dev/null || ssh-add
+# ssh agent end
+
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
