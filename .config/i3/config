@@ -164,7 +164,7 @@ for_window [class="vlc"] floating enable
 assign [class="discord"] $ws7
 assign [instance="Navigator" class="firefox-aurora"] $ws3
 assign [class="Alacritty"] $ws2
-assign [class="ui-PlanAhead"] $ws5
+assign [class="ui-PlanAhead" instance="Vivado 2023.1"] $ws5
 assign [class="obsidian"] $ws1
 assign [class="Zotero"] $ws6
 

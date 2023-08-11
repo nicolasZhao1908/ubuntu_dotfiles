@@ -74,6 +74,12 @@ stow .
 -   [sccache](https://github.com/mozilla/sccache), cache for faster build time.
 -   [hyperfine](https://github.com/sharkdp/hyperfine), benchmarking tool.
 
+## GRUB
+
+`grub` configuration file is provided and should be placed at `/etc/default/grub`
+and then run the command `sudo update-grub` to save the changes. 
+[For more details](https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2).
+
 ## Web browsers
 
 [Firefox developer](https://www.mozilla.org/en-US/firefox/developer/)
