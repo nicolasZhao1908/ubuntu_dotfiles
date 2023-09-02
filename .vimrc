@@ -1,4 +1,3 @@
-colorscheme github
 set signcolumn=no
 set guicursor=
 set showmode

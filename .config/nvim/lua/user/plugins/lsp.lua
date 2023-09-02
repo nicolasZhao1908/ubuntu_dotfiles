@@ -43,6 +43,7 @@ return {
 					telemetry = { enable = false },
 				},
 			},
+			clangd = {},
 			verible = {},
 		}
 		-- [[ Configure LSP ]]

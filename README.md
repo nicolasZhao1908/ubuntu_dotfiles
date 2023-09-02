@@ -76,8 +76,8 @@ stow .
 
 ## GRUB
 
-`grub` configuration file is provided and should be placed at `/etc/default/grub`
-and then run the command `sudo update-grub` to save the changes. 
+`grub` configuration file is provided at `.config/grub/grub` and should be 
+placed at `/etc/default/grub` and then run the command `sudo update-grub` to save the changes. 
 [For more details](https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2).
 
 ## Web browsers

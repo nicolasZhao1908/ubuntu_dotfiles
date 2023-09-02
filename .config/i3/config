@@ -25,11 +25,10 @@ exec --no-startup-id nm-applet &
 exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
-# feh for wallpaper
-exec --no-startup-id ~/.fehbg &
-
 # fcitx5 for pinyin input
 exec --no-startup-id fcitx5 -d
+
+exec_always --no-startup-id nitrogen --restore
 
 # swap keys
 exec_always --no-startup-id setxkbmap -option caps:escape
